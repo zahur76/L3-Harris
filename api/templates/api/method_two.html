@@ -16,9 +16,9 @@
 
 <body>
     <div class="h1 text-center">L3HARRIS ASSESSMENT</div>
-    <div class="h3 text-center m-2">Method 1</div>
-    <a href="{% url 'method_two' %}" class="btn-primary btn-sm text-decoration-none p-2 m-2">Method 2</a>
-    <form class="w-50 mx-auto" action="{% url 'home' %}" method="post">
+    <div class="h3 text-center m-2">Method 2</div>
+    <a href="{% url 'home' %}" class="btn-primary btn-sm text-decoration-none p-2 m-2">Method 1</a>
+    <form class="w-50 mx-auto" action="{% url 'method_two' %}" method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-dark m-2 btn-sm">Submit</button>
