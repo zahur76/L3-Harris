@@ -8,6 +8,8 @@
 * [Haversine Formula](#installation)
 * [Design Approach](#design-approach)
 * [Command Line Inteface](#command-line-interface)
+* [Django interface method 1](#django-interface-method-1)
+* [Django interface method21](#django-interface-method-2)
 * [Flask Inteface](#flask-interface)
 * [API Endpoint](#api-endpoint)
 * [Output Format](#output-format)  
@@ -33,18 +35,20 @@ Write a program that accepts a decimal logitude and latitude location and displa
 * Django for coordinate inout form and storing airport details
 * pytest for unit tests
 
+
 ## INSTALLATION
 
-1. create virtual environment using : ``` python -m venv .venv ```
+1. create virtual environment using :  ``` python -m venv .venv ```
 2. Activate virtual environment: ``` .\.venv\Scripts\activate ```
 3. Install all libraries: ``` pip install -r requirements.txt ```
-4. If usinng method 3 run the following:
+4. When using method 3 run the following to store airport into model:
 
-    ``` python manage.py makemigrations ```
+        ``` python manage.py makemigrations ```
 
-    ``` python manage.py migrate ```
+        ``` python manage.py migrate ```
 
-    ``` python manage.py store_airport ```
+        ``` python manage.py store_airport ```
+
 
 ## HAVERSINE FORMULA
 
@@ -56,12 +60,16 @@ The shortest distance calculation was done using the Haversine Formula:
 
     d = R ⋅ c
 
+The python function can be found [here](api/utils.py)
+
 
 ## DESIGN APPROACH
 
 Three methods were used:
-1. Command line interface 
-2. Django with dataframe created directly from 
+1. Command line interface. 
+2. Django with input form interface using CSV to create dataframe.
+3. Django with input form interface using models to create dataframe.
+
 
 ## Haversine Formula
 
@@ -73,52 +81,41 @@ The shortest distance calculation was done using the Haversine Formula:
 
     d = R ⋅ c
 
+
 ## COMMAND LINE INTERFACE
 
-This interface provides a mean to obtain flight details by running the main script independantly and returning the printed result to the terminal. This programme makes use of OOP.
+This interface provides a mean to obtain nearest airport by running the command ``` python main.py ```. 
 
-- Run Command: ``` python main.py ```
-
-The folder also includes the script ``` main.exe ``` to run the script as an excutable once packages are installed.
-
-The inputs required will be requested by a prompt (departure airport, destination airport and departure date) and the output printed to the terminal. The airports to be entered using IATA format.
-
-![document](document/image1.png)
+This method creates a dataframe directy from csv file.
 
 
-![document](document/image2.png)
+## DJANGO INTERFACE METHOD 1
+
+This method provides a to input latitude and longitude and renders the results to the same page in a tabular format```
+
+The dataframe is created directy from csv file.
+
+- Command to un Django Locally : ``` python manage.py runserver ```
+
+![document](docs/image1.png)
 
 
+## DJANGO INTERFACE METHOD 2
 
-## FLASK INTERFACE
+This method provides a interface to input latitude and longitude and output the response as a json file.
 
-This interface provides a user friendly interface to input and view json response using Flask by making use of a form and jinja template. The api calls upon the function ``` flask_get_flights ``` within ``` utils.py ```
+This method creates a dataframe from the Django Model and requires the following command to run inorder to store the airport details into the model.
 
-- Command to un flask : ``` flask run ```
+    ``` python manage.py store_airport ```
 
-This command will open up and local port on 127.0.0.1:5000 displaying the following.
+- Command to un Django Locally : ``` python manage.py runserver ```
 
-![document](document/image3.png)
+- output:
 
-The response after submission of form is as follows:
+    <pre>
+        {"input_latitude": 52.489471, "input_longitude": -1.898575, "airport": "BIRMINGHAM", "latitude": 52.453856, "longitude": -1.748028, "icao_code": "EGBB", "distance": "17.202 km"}
 
-![document](document/image4.png)
-
-
-## API ENDPOINT
-
-This approach is the preferred method of all 3 since it provides an endpoint which will return a Json respsonse. Flask was used since 
-it provides a straight forward means of setting up a REST API.
-
-- Command to run flask : ``` flask run ```
-
-This command will open up and local port on 127.0.0.1:5000 allowing us to make requests on the url ``` http://127.0.0.1:5000/api ```.
-
-The request must include the body in the the following format ``` {"destination": "AAA", "departure": "BBB", "departure-date": "DD-MM-YYYY"} ```
-
-Request were made using Postman. 
-
-![document](document/image5.png)
+    </pre>
 
 
 ## OUTPUT FORMAT
