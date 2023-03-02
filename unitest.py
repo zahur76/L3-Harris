@@ -20,16 +20,16 @@ class SimpleTest(unittest.TestCase):
         self.assertTrue(output, dict)
 
     def test_airport_name(self):
-        # use city airport to check nearest airport
-        output = self.airport.nearest_airport()
+        # use city airport cooridnates to check nearest airport
+        output = self.airport_city.nearest_airport()
 
-        self.assertTrue(output['nearest airport'], 'city')
+        self.assertEqual(output['nearest airport'], 'CITY')
 
     def test_airport_distance(self):
-        # use city airport to check diatance
-        output = self.airport.nearest_airport()
-
-        self.assertTrue(output['distance'], 0)
+        # use city airport to check distance
+        output = self.airport_city.nearest_airport()
+        
+        self.assertEqual(int(output['distance'].strip('km')[0]), 0)
 
 
 if __name__ == '__main__':

@@ -4,17 +4,26 @@ from colorama import Fore
 
 
 class GetAirport:
-    def __init__(self, latitude: float, longitude: float) -> dict:
+    """
+    Class to return Nearest Airport between an input Coordinates and a list of airports
+    """
+
+    def __init__(self, latitude, longitude):
         self.latitude = latitude
         self.longitude = longitude
 
     def nearest_airport(self):
+        """
+        Find nearest airport by using pandas 
+        """
 
+        # read in csv file and create dataframe
         df = pd.read_csv("docs/uk_airport_coords.csv")
 
         def calculate_distance(row): return haversine_distance(
             (row.Latitude, row.Longitude), (self.latitude, self.longitude))
 
+        # return index with min distance by applying haverstine formula across all rows
         df["Distance"] = df.apply(calculate_distance, axis=1)
 
         index = df[["Distance"]].idxmin()

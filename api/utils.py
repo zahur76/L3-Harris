@@ -1,14 +1,12 @@
-"""
-Main function to calculate distance form input coordinates to all airports and 
-return nearest airport
-"""
-
 import math
 from numpy import arcsin # used for sign inverse
 import pandas as pd
 
 
 def haversine_distance(coord1: tuple, coord2: tuple):
+    """
+    Function to calculate distance between 2 sets of coordinates using Haversine Formula
+    """
     lon1, lat1 = coord1
     lon2, lat2 = coord2
 
@@ -20,6 +18,7 @@ def haversine_distance(coord1: tuple, coord2: tuple):
     delta_latitude = math.radians(lat2 - lat1)
     delta_longitude = math.radians(lon2 - lon1)
 
+    # apply haversine formula
     distance_meters = (
         2
         * R
