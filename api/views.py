@@ -18,12 +18,12 @@ def index(request):
         latitude = float(request.POST.get('latitude'))
         longitude = float(request.POST.get('longitude'))
 
-        input_coord2 = (latitude, longitude)
+        input_coordinates = (latitude, longitude)
 
         df = pd.read_csv("docs/uk_airport_coords.csv")
 
         def calculate_distance(row): return haversine_distance(
-            (row.Latitude, row.Longitude), (input_coord2))
+            (row.Latitude, row.Longitude), (input_coordinates))
 
         df["Distance"] = df.apply(calculate_distance, axis=1)
 
@@ -58,14 +58,14 @@ def method_two(request):
         latitude = float(request.POST.get('latitude'))
         longitude = float(request.POST.get('longitude'))
 
-        input_coord2 = (latitude, longitude)
+        input_coordinates = (latitude, longitude)
 
         airport = Airport.objects.all().values()
 
         df = pd.DataFrame(list(airport))
 
         def calculate_distance(row): return haversine_distance(
-            (row.latitude, row.longitude), (input_coord2))
+            (row.latitude, row.longitude), (input_coordinates))
 
         df["Distance"] = df.apply(calculate_distance, axis=1)
 
