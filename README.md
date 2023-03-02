@@ -15,7 +15,6 @@
 * [Output Format](#output-format)  
 * [Error Handling](#error-handling)
 * [Testing](#testing)
-* [Future improvements](#future-improvements)
 
 
 ## INTRODUCTION 
@@ -32,7 +31,6 @@ Write a program that accepts a decimal logitude and latitude location and displa
 * Python (v3.9.13)
 * pandas package for distance computations
 * Django for user interface and storing airport details
-* unitest
 
 
 ## INSTALLATION
@@ -64,7 +62,7 @@ The python function executing the formula can be found [here](api/utils.py)
 
 ## DESIGN APPROACH
 
-Three methods were used to obtain nearest airport:
+Three approaches were used to obtain nearest airport:
 1. Command line interface. 
 2. Django with input form interface using CSV file to create dataframe.
 3. Django with input form interface using model data to create dataframe.
@@ -98,7 +96,7 @@ This method creates a dataframe from the Django Model and requires the following
 
 - Command to un Django Locally : ``` python manage.py runserver ```
 
--e.g output:
+- e.g output:
   
         {"input_latitude": 52.489471, "input_longitude": -1.898575, "airport": "BIRMINGHAM", "latitude": 52.453856, "longitude": -1.748028, "icao_code": "EGBB", "distance": "17.202 km"}    
 
@@ -136,4 +134,4 @@ The following parameters were checked:
 1. Output format
 2. Output data: airport name, distance
 
-Test data for city airport was used.
+Test data for CITY airport was used.
