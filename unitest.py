@@ -24,7 +24,7 @@ class SimpleTest(unittest.TestCase):
         output = self.airport.nearest_airport()
 
         self.assertTrue(output['nearest airport'], 'city')
-    
+
     def test_airport_distance(self):
         # use city airport to check diatance
         output = self.airport.nearest_airport()
