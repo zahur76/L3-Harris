@@ -31,9 +31,9 @@ Write a program that accepts a decimal logitude and latitude location and displa
 ## MAIN TECHNOLOGIES USED
 
 * Python (v3.9.13)
-* pandas package to create a dataframe to allow distance computations
-* Django for coordinate inout form and storing airport details
-* pytest for unit tests
+* pandas package for distance computations
+* Django for user interface and storing airport details
+* unitest
 
 
 ## INSTALLATION
@@ -60,26 +60,15 @@ The shortest distance calculation was done using the Haversine Formula:
 
     d = R ⋅ c
 
-The python function can be found [here](api/utils.py)
+The python function executing the formula can be found [here](api/utils.py)
 
 
 ## DESIGN APPROACH
 
-Three methods were used:
+Three methods were used to obtain nearest airport:
 1. Command line interface. 
 2. Django with input form interface using CSV to create dataframe.
 3. Django with input form interface using models to create dataframe.
-
-
-## Haversine Formula
-
-The shortest distance calculation was done using the Haversine Formula:
-
-    a = sin²(φB - φA/2) + cos φA * cos φB * sin²(λB - λA/2)
-
-    c = 2 * atan2( √a, √(1−a) )
-
-    d = R ⋅ c
 
 
 ## COMMAND LINE INTERFACE
@@ -91,7 +80,7 @@ This method creates a dataframe directy from csv file.
 
 ## DJANGO INTERFACE METHOD 1
 
-This method provides a to input latitude and longitude and renders the results to the same page in a tabular format```
+This method provides a form interface to input latitude and longitude and renders the results to the same page in a tabular format```
 
 The dataframe is created directy from csv file.
 
@@ -102,7 +91,7 @@ The dataframe is created directy from csv file.
 
 ## DJANGO INTERFACE METHOD 2
 
-This method provides a interface to input latitude and longitude and output the response as a json file.
+This method provides a form interface to input latitude and longitude and output the response as a json file.
 
 This method creates a dataframe from the Django Model and requires the following command to run inorder to store the airport details into the model.
 
@@ -122,16 +111,13 @@ This method creates a dataframe from the Django Model and requires the following
 
 The output format included the following fields as per test requirements:
 
-* Departure airport
-* Arrival airport
-* Departure date & time
-* Arrival date & time
-* Flight number
-* Adult fare cost
-
-The adult fare cost included all possible types (low, flex, bus, busflex) within a list.
-
-The Flight number would be a combination of 2 flight numbers if there was a connecting flight.
+- input latitude
+- input longitude
+- nearest airport name
+- latitude of airport
+- longitude of airport
+- icao code
+- distance
 
 
 ## DEVELOPMENT TIME
