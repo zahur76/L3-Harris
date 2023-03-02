@@ -77,11 +77,13 @@ This method creates a dataframe directy from csv file.
 
 ## DJANGO INTERFACE METHOD 1
 
-This method provides a form interface to input latitude and longitude and renders the results to the same page in a tabular format```
+This method provides a form interface to input latitude and longitude and renders the results to the same page in a tabular format.
 
 The dataframe is created directy from csv file.
 
 - Command to un Django Locally : ``` python manage.py runserver ```
+
+- open port: '127.0.0.1:8000'
 
 ![document](docs/image1.png)
 
